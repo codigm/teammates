@@ -109,7 +109,9 @@ export class InstructorSearchPageComponent implements OnInit {
   }
 
   getPrivileges(coursesWithStudents: SearchStudentsListRowTable[]): Observable<Map<string, InstructorPrivilege>> {
-    const courseIds: string[] = Array.from(new Set(coursesWithStudents.map((c: SearchStudentsListRowTable) => c.courseId)));
+    const courseIds: string[] = Array.from(
+      new Set(coursesWithStudents.map((c: SearchStudentsListRowTable) => c.courseId)),
+    );
     const uncachedIds: string[] = courseIds.filter((id: string) => !this.privilegeCache.has(id));
 
     if (uncachedIds.length === 0) {
@@ -183,4 +185,3 @@ export class InstructorSearchPageComponent implements OnInit {
       .pipe(map((courses) => Array.from(new Set(courses.courses.map((course) => course.courseId)))));
   }
 }
-
